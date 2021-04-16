@@ -1,22 +1,23 @@
 <script lang="ts">
 	import { getContext, onDestroy } from 'svelte';
-	import { HemisphericLight, Scene, Vector3 } from 'babylonjs';
 	import type { Writable } from 'svelte/store';
 
-	const { getScene } = getContext('BabylonScene');
-	const scene: Writable<Scene> = getScene();
+	import * as BABYLON from 'babylonjs';
 
-	let light: HemisphericLight;
+	const { getScene } = getContext('BabylonScene');
+	const scene: Writable<BABYLON.Scene> = getScene();
+
+	let light: BABYLON.HemisphericLight;
 
 	export let name = '';
 	$: if (light) light.name = name;
-	export let direction = new Vector3();
+	export let direction = new BABYLON.Vector3();
 	$: if (light) light.direction = direction;
 	export let intensity = 1.0;
 	$: if (light) light.intensity = intensity;
 
 	$: if (!light && $scene) {
-		light = new HemisphericLight(name, direction, $scene);
+		light = new BABYLON.HemisphericLight(name, direction, $scene);
 		light.intensity = intensity;
 	}
 

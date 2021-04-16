@@ -1,20 +1,21 @@
 <script lang="ts">
 	import { getContext, onDestroy } from 'svelte';
-	import { Mesh, MeshBuilder, Scene, Vector3 } from 'babylonjs';
 	import type { Writable } from 'svelte/store';
 
-	const { getScene } = getContext('BabylonScene');
-	const scene: Writable<Scene> = getScene();
+	import * as BABYLON from 'babylonjs';
 
-	let sphere: Mesh;
+	const { getScene } = getContext('BabylonScene');
+	const scene: Writable<BABYLON.Scene> = getScene();
+
+	let sphere: BABYLON.Mesh;
 
 	export let name = '';
 	export let options = {};
-	export let position = new Vector3();
+	export let position = new BABYLON.Vector3();
 	$: if (sphere) sphere.position = position;
 
 	$: if (!sphere && $scene) {
-		sphere = MeshBuilder.CreateSphere(name, options, $scene);
+		sphere = BABYLON.MeshBuilder.CreateSphere(name, options, $scene);
 		sphere.position = position;
 	}
 

@@ -1,19 +1,20 @@
 <script lang="ts">
 	import { getContext, onDestroy } from 'svelte';
-	import { Scene, FreeCamera, Vector3 } from 'babylonjs';
 	import type { Writable } from 'svelte/store';
 
-	const { getScene } = getContext('BabylonScene');
-	const scene: Writable<Scene> = getScene();
+	import * as BABYLON from 'babylonjs';
 
-	let camera: FreeCamera;
+	const { getScene } = getContext('BabylonScene');
+	const scene: Writable<BABYLON.Scene> = getScene();
+
+	let camera: BABYLON.FreeCamera;
 
 	export let name = '';
-	export let position = new Vector3();
-	export let target = new Vector3();
+	export let position = new BABYLON.Vector3();
+	export let target = new BABYLON.Vector3();
 
 	$: if (!camera && $scene) {
-		camera = new FreeCamera(name, position, $scene);
+		camera = new BABYLON.FreeCamera(name, position, $scene);
 
 		// This targets the camera to scene origin
 		camera.setTarget(target);

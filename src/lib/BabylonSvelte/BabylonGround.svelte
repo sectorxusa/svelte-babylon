@@ -1,18 +1,19 @@
 <script lang="ts">
 	import { getContext, onDestroy } from 'svelte';
-	import { Mesh, MeshBuilder, Scene } from 'babylonjs';
 	import type { Writable } from 'svelte/store';
 
-	const { getScene } = getContext('BabylonScene');
-	const scene: Writable<Scene> = getScene();
+	import * as BABYLON from 'babylonjs';
 
-	let ground: Mesh;
+	const { getScene } = getContext('BabylonScene');
+	const scene: Writable<BABYLON.Scene> = getScene();
+
+	let ground: BABYLON.Mesh;
 
 	export let name = '';
 	export let options = {};
 
 	$: if (!ground && $scene) {
-		ground = MeshBuilder.CreateGround(name, options, $scene);
+		ground = BABYLON.MeshBuilder.CreateGround(name, options, $scene);
 	}
 
 	onDestroy(() => {

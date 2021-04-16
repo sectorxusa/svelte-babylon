@@ -2,7 +2,8 @@
 	import { tweened } from 'svelte/motion';
 	import { bounceOut } from 'svelte/easing';
 
-	import { Vector3 } from 'babylonjs';
+	import * as BABYLON from 'babylonjs';
+
 	import {
 		BabylonEngine,
 		BabylonScene,
@@ -26,8 +27,8 @@
 <div>
 	<BabylonEngine>
 		<BabylonScene>
-			<BabylonCamera position={new Vector3(0, 5, -10)} target={Vector3.Zero()} />
-			<BabylonHemisphericLight direction={new Vector3(0, 1, 0)} intensity={0.7} />
+			<BabylonCamera position={new BABYLON.Vector3(0, 5, -10)} target={BABYLON.Vector3.Zero()} />
+			<BabylonHemisphericLight direction={new BABYLON.Vector3(0, 1, 0)} intensity={0.7} />
 			<BabylonSphere options={{ diameter: 2, segments: 32 }} bind:position={spherePosition} />
 			<BabylonGround options={{ width: 6, height: 6 }} />
 		</BabylonScene>

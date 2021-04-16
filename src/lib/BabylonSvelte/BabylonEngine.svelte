@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { onDestroy, setContext } from 'svelte';
 	import { writable } from 'svelte/store';
-	import { Engine } from 'babylonjs';
+	import * as BABYLON from 'babylonjs';
 
 	let canvas: HTMLCanvasElement;
 
-	let engine: Engine;
+	let engine: BABYLON.Engine;
 	let engineStore = writable(engine);
 	$: $engineStore = engine;
 	$engineStore;
@@ -15,7 +15,7 @@
 	});
 
 	$: if (!engine && canvas) {
-		engine = new Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
+		engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
 	}
 
 	onDestroy(() => {
