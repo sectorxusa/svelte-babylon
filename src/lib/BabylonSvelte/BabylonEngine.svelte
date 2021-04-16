@@ -8,8 +8,7 @@
 
 	let engine: BABYLON.Engine;
 	const engineStore = writable(engine);
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	$: $engineStore = engine;
+	$: $engineStore = engine; // eslint-disable-line @typescript-eslint/no-unused-vars
 
 	setContext('BabylonEngine', {
 		getEngine: () => engineStore

@@ -18,12 +18,11 @@
 	});
 	$t = 1;
 
-	// eslint-disable-next-line no-undef
-	let spherePosition: BABYLON.Vector3;
+	let spherePosition: BABYLON.Vector3; // eslint-disable-line no-undef
+
 	$: if (spherePosition) spherePosition.y = $t;
 
-	// eslint-disable-next-line no-undef
-	let BABYLON: BABYLON = null;
+	let BABYLON: BABYLON = null; // eslint-disable-line no-undef
 
 	onMount(async () => {
 		const babylonjs = await import('babylonjs');
