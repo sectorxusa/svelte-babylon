@@ -20,9 +20,7 @@
 	}
 
 	onDestroy(() => {
-		if ($scene && ground) {
-			$scene.removeMesh(ground);
-		}
+		if ($scene && ground) $scene.removeMesh(ground);
 	});
 </script>
 

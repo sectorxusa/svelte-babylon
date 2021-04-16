@@ -27,9 +27,7 @@
 	}
 
 	onDestroy(() => {
-		if ($scene && light) {
-			$scene.removeLight(light);
-		}
+		if ($scene && light) $scene.removeLight(light);
 	});
 </script>
 

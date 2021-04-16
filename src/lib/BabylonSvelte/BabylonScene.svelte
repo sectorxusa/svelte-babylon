@@ -37,9 +37,7 @@
 	}
 
 	onDestroy(() => {
-		if ($engine && scene) {
-			$engine.stopRenderLoop(renderFunction);
-		}
+		if ($engine && scene) $engine.stopRenderLoop(renderFunction);
 	});
 </script>
 

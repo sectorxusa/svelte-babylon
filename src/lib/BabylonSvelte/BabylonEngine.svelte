@@ -19,9 +19,7 @@
 	}
 
 	onDestroy(() => {
-		if (engine) {
-			engine.stopRenderLoop();
-		}
+		if (engine) engine.stopRenderLoop();
 	});
 </script>
 

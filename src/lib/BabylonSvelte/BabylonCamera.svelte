@@ -30,9 +30,7 @@
 	}
 
 	onDestroy(() => {
-		if ($scene && camera) {
-			$scene.removeCamera(camera);
-		}
+		if ($scene && camera) $scene.removeCamera(camera);
 	});
 </script>
 

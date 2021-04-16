@@ -25,9 +25,7 @@
 	}
 
 	onDestroy(() => {
-		if ($scene && sphere) {
-			$scene.removeMesh(sphere);
-		}
+		if ($scene && sphere) $scene.removeMesh(sphere);
 	});
 </script>
 
