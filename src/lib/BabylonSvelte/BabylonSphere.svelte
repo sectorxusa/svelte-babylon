@@ -14,7 +14,7 @@
 	export let position = new BABYLON.Vector3();
 	$: if (sphere) sphere.position = position;
 
-	$: if (!sphere && $scene) {
+	$: if ($scene && !sphere) {
 		sphere = BABYLON.MeshBuilder.CreateSphere(name, options, $scene);
 		sphere.position = position;
 	}

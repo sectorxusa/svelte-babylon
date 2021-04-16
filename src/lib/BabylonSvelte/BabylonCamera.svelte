@@ -10,14 +10,16 @@
 	let camera: BABYLON.FreeCamera;
 
 	export let name = '';
+	$: if (name && camera) camera.name = name;
+
 	export let position = new BABYLON.Vector3();
+	$: if (position && camera) camera.position = position;
+
 	export let target = new BABYLON.Vector3();
+	$: if (target && camera) camera.setTarget(target);
 
-	$: if (!camera && $scene) {
+	$: if ($scene && !camera) {
 		camera = new BABYLON.FreeCamera(name, position, $scene);
-
-		// This targets the camera to scene origin
-		camera.setTarget(target);
 
 		const engine = $scene.getEngine();
 		const canvas = engine.getRenderingCanvas();

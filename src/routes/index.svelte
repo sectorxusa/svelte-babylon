@@ -20,7 +20,7 @@
 
 	$t = 1;
 
-	let spherePosition;
+	let spherePosition: BABYLON.Vector3;
 	$: if (spherePosition) spherePosition.y = $t;
 </script>
 

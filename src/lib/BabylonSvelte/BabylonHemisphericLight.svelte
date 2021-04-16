@@ -10,15 +10,16 @@
 	let light: BABYLON.HemisphericLight;
 
 	export let name = '';
-	$: if (light) light.name = name;
-	export let direction = new BABYLON.Vector3();
-	$: if (light) light.direction = direction;
-	export let intensity = 1.0;
-	$: if (light) light.intensity = intensity;
+	$: if (name && light) light.name = name;
 
-	$: if (!light && $scene) {
+	export let direction = new BABYLON.Vector3();
+	$: if (direction && light) light.direction = direction;
+
+	export let intensity = 1.0;
+	$: if (intensity && light) light.intensity = intensity;
+
+	$: if ($scene && !light) {
 		light = new BABYLON.HemisphericLight(name, direction, $scene);
-		light.intensity = intensity;
 	}
 
 	onDestroy(() => {

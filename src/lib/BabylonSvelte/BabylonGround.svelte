@@ -12,7 +12,7 @@
 	export let name = '';
 	export let options = {};
 
-	$: if (!ground && $scene) {
+	$: if ($scene && !ground) {
 		ground = BABYLON.MeshBuilder.CreateGround(name, options, $scene);
 	}
 

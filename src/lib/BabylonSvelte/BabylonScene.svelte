@@ -17,7 +17,7 @@
 	const { getEngine } = getContext('BabylonEngine');
 	const engine: Writable<BABYLON.Engine> = getEngine();
 
-	$: if (!scene && $engine) {
+	$: if ($engine && !scene) {
 		scene = new BABYLON.Scene($engine);
 
 		$engine.runRenderLoop(function () {
