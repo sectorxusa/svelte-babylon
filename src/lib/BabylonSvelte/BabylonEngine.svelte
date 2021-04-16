@@ -5,7 +5,7 @@
 
 	let canvas: HTMLCanvasElement;
 
-	export let engine: Engine;
+	let engine: Engine;
 	let engineStore = writable(engine);
 	$: $engineStore = engine;
 	$engineStore;

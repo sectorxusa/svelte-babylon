@@ -14,7 +14,6 @@
 	$: if (sphere) sphere.position = position;
 
 	$: if (!sphere && $scene) {
-		console.log(sphere);
 		sphere = MeshBuilder.CreateSphere(name, options, $scene);
 		sphere.position = position;
 	}
