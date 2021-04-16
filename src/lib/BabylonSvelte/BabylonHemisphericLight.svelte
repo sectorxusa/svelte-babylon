@@ -12,7 +12,7 @@
 	export let name = '';
 	$: if (name && light) light.name = name;
 
-	export let direction = new BABYLON.Vector3();
+	export let direction = new BABYLON.Vector3(0, 0, 0);
 	$: if (direction && light) light.direction = direction;
 
 	export let intensity = 1.0;

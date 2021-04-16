@@ -12,10 +12,10 @@
 	export let name = '';
 	$: if (name && camera) camera.name = name;
 
-	export let position = new BABYLON.Vector3();
+	export let position = new BABYLON.Vector3(0, 0, 0);
 	$: if (position && camera) camera.position = position;
 
-	export let target = new BABYLON.Vector3();
+	export let target = new BABYLON.Vector3(0, 0, 0);
 	$: if (target && camera) camera.setTarget(target);
 
 	$: if ($scene && !camera) {

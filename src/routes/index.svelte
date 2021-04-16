@@ -20,14 +20,17 @@
 
 	$t = 1;
 
-	let spherePosition: BABYLON.Vector3;
+	let spherePosition = new BABYLON.Vector3(0, 0, 0);
 	$: if (spherePosition) spherePosition.y = $t;
 </script>
 
 <div>
 	<BabylonEngine>
 		<BabylonScene>
-			<BabylonCamera position={new BABYLON.Vector3(0, 5, -10)} target={BABYLON.Vector3.Zero()} />
+			<BabylonCamera
+				position={new BABYLON.Vector3(0, 5, -10)}
+				target={new BABYLON.Vector3(0, 0, 0)}
+			/>
 			<BabylonHemisphericLight direction={new BABYLON.Vector3(0, 1, 0)} intensity={0.7} />
 			<BabylonSphere options={{ diameter: 2, segments: 32 }} bind:position={spherePosition} />
 			<BabylonGround options={{ width: 6, height: 6 }} />

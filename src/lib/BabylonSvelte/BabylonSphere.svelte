@@ -11,7 +11,7 @@
 
 	export let name = '';
 	export let options = {};
-	export let position = new BABYLON.Vector3();
+	export let position = new BABYLON.Vector3(0, 0, 0);
 	$: if (sphere) sphere.position = position;
 
 	$: if ($scene && !sphere) {
