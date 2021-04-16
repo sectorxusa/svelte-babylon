@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext, onDestroy } from 'svelte';
-	import { FreeCamera, Scene, Vector3 } from 'babylonjs';
+	import { Scene, FreeCamera, Vector3 } from 'babylonjs';
 	import type { Writable } from 'svelte/store';
 
 	const { getScene } = getContext('BabylonScene');

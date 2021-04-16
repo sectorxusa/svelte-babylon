@@ -2,7 +2,7 @@
 	import { getContext, onDestroy, setContext, tick } from 'svelte';
 	import { writable } from 'svelte/store';
 	import type { Writable } from 'svelte/store';
-	import { Engine, Scene } from 'babylonjs';
+	import { Scene, Engine } from 'babylonjs';
 
 	let scene: Scene;
 	let sceneStore = writable(scene);
