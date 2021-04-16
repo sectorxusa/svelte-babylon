@@ -25,7 +25,9 @@
 		camera.attachControl(canvas, true);
 	}
 
-	onDestroy(() => {});
+	onDestroy(() => {
+		console.log('onDestroy', camera);
+	});
 </script>
 
 <slot />

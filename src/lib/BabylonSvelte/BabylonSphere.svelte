@@ -19,7 +19,9 @@
 		sphere.position = position;
 	}
 
-	onDestroy(() => {});
+	onDestroy(() => {
+		console.log('onDestroy', sphere);
+	});
 </script>
 
 <slot />

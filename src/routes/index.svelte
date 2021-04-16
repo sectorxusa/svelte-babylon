@@ -20,7 +20,7 @@
 	$t = 1;
 
 	let spherePosition;
-	$: spherePosition?.y = $t;
+	$: if (spherePosition) spherePosition.y = $t;
 </script>
 
 <div>

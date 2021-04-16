@@ -7,6 +7,7 @@
 	let scene: Scene;
 	let sceneStore = writable(scene);
 	$: $sceneStore = scene;
+	$sceneStore;
 
 	setContext('BabylonScene', {
 		getScene: () => sceneStore
@@ -33,7 +34,9 @@
 		});
 	}
 
-	onDestroy(() => {});
+	onDestroy(() => {
+		console.log('onDestroy', scene);
+	});
 </script>
 
 <slot />

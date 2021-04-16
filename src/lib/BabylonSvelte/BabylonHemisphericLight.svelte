@@ -20,7 +20,9 @@
 		light.intensity = intensity;
 	}
 
-	onDestroy(() => {});
+	onDestroy(() => {
+		console.log('onDestroy', light);
+	});
 </script>
 
 <slot />

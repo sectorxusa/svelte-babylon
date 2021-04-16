@@ -8,6 +8,7 @@
 	export let engine: Engine;
 	let engineStore = writable(engine);
 	$: $engineStore = engine;
+	$engineStore;
 
 	setContext('BabylonEngine', {
 		getEngine: () => engineStore
@@ -17,7 +18,9 @@
 		engine = new Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
 	}
 
-	onDestroy(() => {});
+	onDestroy(() => {
+		console.log('onDestroy', engine);
+	});
 </script>
 
 <canvas bind:this={canvas} class:canvas />

@@ -15,7 +15,9 @@
 		ground = MeshBuilder.CreateGround(name, options, $scene);
 	}
 
-	onDestroy(() => {});
+	onDestroy(() => {
+		console.log('onDestroy', ground);
+	});
 </script>
 
 <slot />
