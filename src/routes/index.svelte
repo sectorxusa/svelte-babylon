@@ -24,8 +24,8 @@
 </script>
 
 <div>
+	{@debug BABYLON}
 	{#if BABYLON}
-		{@debug BABYLON}
 		<BabylonEngine>
 			<BabylonScene>
 				<BabylonCamera />
