@@ -9,11 +9,11 @@
 
 	let sphere: BABYLON.Mesh;
 
-	export let name: string = null;
+	export let name: string;
 
-	export let options: Record<string, unknown> = null;
+	export let options: Record<string, unknown>;
 
-	export let position: BABYLON.Vector3 = null;
+	export let position: BABYLON.Vector3;
 	$: if (sphere) sphere.position = position;
 
 	$: if ($scene && !sphere) {

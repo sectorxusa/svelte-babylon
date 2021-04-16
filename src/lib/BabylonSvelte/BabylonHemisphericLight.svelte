@@ -9,7 +9,7 @@
 
 	let light: BABYLON.HemisphericLight;
 
-	export let name = '';
+	export let name: string;
 	$: if (name && light) light.name = name;
 
 	export let direction: BABYLON.Vector3;
@@ -19,6 +19,7 @@
 	$: if (intensity && light) light.intensity = intensity;
 
 	$: if ($scene && !light) {
+		if (!name) name = '';
 		if (!direction) direction = new BABYLON.Vector3(0, 0, 0);
 		if (!intensity) intensity = 1.0;
 

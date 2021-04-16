@@ -9,13 +9,13 @@
 
 	let camera: BABYLON.FreeCamera;
 
-	export let name: string = null;
+	export let name: string;
 	$: if (name && camera) camera.name = name;
 
-	export let position: BABYLON.Vector3 = null;
+	export let position: BABYLON.Vector3;
 	$: if (position && camera) camera.position = position;
 
-	export let target: BABYLON.Vector3 = null;
+	export let target: BABYLON.Vector3;
 	$: if (target && camera) camera.setTarget(target);
 
 	$: if ($scene && !camera) {
