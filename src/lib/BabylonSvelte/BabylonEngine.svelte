@@ -27,6 +27,8 @@
 
 <canvas bind:this={canvas} class:canvas />
 
+<!-- TODO: Add scene specific slots -->
+
 <slot />
 
 <style>

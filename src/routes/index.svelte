@@ -1,8 +1,7 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { bounceOut } from 'svelte/easing';
-
-	import * as BABYLON from 'babylonjs';
 
 	import {
 		BabylonEngine,
@@ -21,26 +20,30 @@
 
 	let spherePosition: BABYLON.Vector3;
 	$: if (spherePosition) spherePosition.y = $t;
+
+	let BABYLON;
+
+	onMount(async () => {
+		const module = await import('babylonjs');
+		BABYLON = module.default;
+	});
 </script>
 
-<div>
-	{@debug BABYLON}
+<div class:BABYLON>
 	{#if BABYLON}
 		<BabylonEngine>
 			<BabylonScene>
 				<BabylonCamera />
-				<!--
 				<BabylonHemisphericLight direction={new BABYLON.Vector3(0, 1, 0)} intensity={0.7} />
 				<BabylonSphere options={{ diameter: 2, segments: 32 }} bind:position={spherePosition} />
 				<BabylonGround options={{ width: 6, height: 6 }} />
-				-->
 			</BabylonScene>
 		</BabylonEngine>
 	{/if}
 </div>
 
 <style>
-	div {
+	.BABYLON {
 		position: fixed;
 		left: 0;
 		right: 0;
