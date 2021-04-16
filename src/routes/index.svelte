@@ -1,49 +1,45 @@
 <script lang="ts">
-	import Counter from '$lib/Counter.svelte';
+	import { tweened } from 'svelte/motion';
+	import { bounceOut } from 'svelte/easing';
+
+	import { Vector3 } from 'babylonjs';
+	import {
+		BabylonEngine,
+		BabylonScene,
+		BabylonCamera,
+		BabylonHemisphericLight,
+		BabylonSphere,
+		BabylonGround
+	} from '$lib/BabylonSvelte';
+
+	const t = tweened(4, {
+		duration: 2500,
+		easing: bounceOut
+	});
+
+	$t = 1;
+
+	let spherePosition;
+	$: spherePosition?.y = $t;
 </script>
 
-<svelte:head>
-	<title>Hello world!</title>
-</svelte:head>
-
-<main>
-	<h1>Hello world!</h1>
-
-	<Counter />
-
-	<p>Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte apps.</p>
-</main>
+<div>
+	<BabylonEngine>
+		<BabylonScene>
+			<BabylonCamera position={new Vector3(0, 5, -10)} target={Vector3.Zero()} />
+			<BabylonHemisphericLight direction={new Vector3(0, 1, 0)} intensity={0.7} />
+			<BabylonSphere options={{ diameter: 2, segments: 32 }} bind:position={spherePosition} />
+			<BabylonGround options={{ width: 6, height: 6 }} />
+		</BabylonScene>
+	</BabylonEngine>
+</div>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4rem;
-		font-weight: 100;
-		line-height: 1.1;
-		margin: 4rem auto;
-		max-width: 14rem;
-	}
-
-	p {
-		max-width: 14rem;
-		margin: 2rem auto;
-		line-height: 1.35;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			max-width: none;
-		}
-
-		p {
-			max-width: none;
-		}
+	div {
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
 	}
 </style>
