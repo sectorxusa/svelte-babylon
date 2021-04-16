@@ -1,0 +1,11 @@
+{
+	"recommendations": [
+		"dbaeumer.vscode-eslint",
+		"knisterpeter.vscode-github",
+		"esbenp.prettier-vscode",
+		"svelte.svelte-vscode",
+		"tabnine.tabnine-vscode",
+		"pflannery.vscode-versionlens",
+		"wattenberger.footsteps"
+	]
+}
