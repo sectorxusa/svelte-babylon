@@ -7,9 +7,8 @@
 	let canvas: HTMLCanvasElement;
 
 	let engine: BABYLON.Engine;
-	let engineStore = writable(engine);
+	const engineStore = writable(engine);
 	$: $engineStore = engine;
-	$engineStore;
 
 	setContext('BabylonEngine', {
 		getEngine: () => engineStore
@@ -20,7 +19,9 @@
 	}
 
 	onDestroy(() => {
-		console.log('onDestroy', engine);
+		if (engine) {
+			engine.stopRenderLoop();
+		}
 	});
 </script>
 

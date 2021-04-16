@@ -12,24 +12,26 @@
 	export let name = '';
 	$: if (name && camera) camera.name = name;
 
-	export let position = new BABYLON.Vector3(0, 0, 0);
+	export let position: BABYLON.Vector3;
 	$: if (position && camera) camera.position = position;
 
-	export let target = new BABYLON.Vector3(0, 0, 0);
+	export let target: BABYLON.Vector3;
 	$: if (target && camera) camera.setTarget(target);
 
 	$: if ($scene && !camera) {
+		if (!position) position = new BABYLON.Vector3(0, 5, -10);
+		if (!target) target = BABYLON.Vector3.Zero();
+
 		camera = new BABYLON.FreeCamera(name, position, $scene);
 
-		const engine = $scene.getEngine();
-		const canvas = engine.getRenderingCanvas();
-
-		// This attaches the camera to the canvas
+		const canvas = $scene.getEngine().getRenderingCanvas();
 		camera.attachControl(canvas, true);
 	}
 
 	onDestroy(() => {
-		console.log('onDestroy', camera);
+		if ($scene && camera) {
+			$scene.removeCamera(camera);
+		}
 	});
 </script>
 

@@ -12,18 +12,23 @@
 	export let name = '';
 	$: if (name && light) light.name = name;
 
-	export let direction = new BABYLON.Vector3(0, 0, 0);
+	export let direction: BABYLON.Vector3;
 	$: if (direction && light) light.direction = direction;
 
-	export let intensity = 1.0;
+	export let intensity: number;
 	$: if (intensity && light) light.intensity = intensity;
 
 	$: if ($scene && !light) {
+		if (!direction) direction = new BABYLON.Vector3(0, 0, 0);
+		if (!intensity) intensity = 1.0;
+
 		light = new BABYLON.HemisphericLight(name, direction, $scene);
 	}
 
 	onDestroy(() => {
-		console.log('onDestroy', light);
+		if ($scene && light) {
+			$scene.removeLight(light);
+		}
 	});
 </script>
 

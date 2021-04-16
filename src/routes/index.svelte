@@ -1,7 +1,3 @@
-<script context="module" lang="ts">
-	export const ssr = false;
-</script>
-
 <script lang="ts">
 	import { tweened } from 'svelte/motion';
 	import { bounceOut } from 'svelte/easing';
@@ -21,25 +17,26 @@
 		duration: 2500,
 		easing: bounceOut
 	});
-
 	$t = 1;
 
-	let spherePosition = new BABYLON.Vector3(0, 0, 0);
+	let spherePosition: BABYLON.Vector3;
 	$: if (spherePosition) spherePosition.y = $t;
 </script>
 
 <div>
-	<BabylonEngine>
-		<BabylonScene>
-			<BabylonCamera
-				position={new BABYLON.Vector3(0, 5, -10)}
-				target={new BABYLON.Vector3(0, 0, 0)}
-			/>
-			<BabylonHemisphericLight direction={new BABYLON.Vector3(0, 1, 0)} intensity={0.7} />
-			<BabylonSphere options={{ diameter: 2, segments: 32 }} bind:position={spherePosition} />
-			<BabylonGround options={{ width: 6, height: 6 }} />
-		</BabylonScene>
-	</BabylonEngine>
+	{#if BABYLON}
+		{@debug BABYLON}
+		<BabylonEngine>
+			<BabylonScene>
+				<BabylonCamera />
+				<!--
+				<BabylonHemisphericLight direction={new BABYLON.Vector3(0, 1, 0)} intensity={0.7} />
+				<BabylonSphere options={{ diameter: 2, segments: 32 }} bind:position={spherePosition} />
+				<BabylonGround options={{ width: 6, height: 6 }} />
+				-->
+			</BabylonScene>
+		</BabylonEngine>
+	{/if}
 </div>
 
 <style>

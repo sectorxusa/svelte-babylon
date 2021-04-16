@@ -9,18 +9,25 @@
 
 	let sphere: BABYLON.Mesh;
 
-	export let name = '';
-	export let options = {};
-	export let position = new BABYLON.Vector3(0, 0, 0);
+	export let name: string;
+
+	export let options: {};
+
+	export let position: BABYLON.Vector3;
 	$: if (sphere) sphere.position = position;
 
 	$: if ($scene && !sphere) {
+		if (!name) name = '';
+		if (!options) options = {};
+		if (!position) position = new BABYLON.Vector3(0, 0, 0);
+
 		sphere = BABYLON.MeshBuilder.CreateSphere(name, options, $scene);
-		sphere.position = position;
 	}
 
 	onDestroy(() => {
-		console.log('onDestroy', sphere);
+		if ($scene && sphere) {
+			$scene.removeMesh(sphere);
+		}
 	});
 </script>
 

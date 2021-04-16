@@ -8,7 +8,6 @@
 	let scene: BABYLON.Scene;
 	let sceneStore = writable(scene);
 	$: $sceneStore = scene;
-	$sceneStore;
 
 	setContext('BabylonScene', {
 		getScene: () => sceneStore
@@ -17,26 +16,30 @@
 	const { getEngine } = getContext('BabylonEngine');
 	const engine: Writable<BABYLON.Engine> = getEngine();
 
+	function renderFunction() {
+		scene.render();
+	}
+
 	$: if ($engine && !scene) {
 		scene = new BABYLON.Scene($engine);
 
-		$engine.runRenderLoop(function () {
-			scene.render();
-		});
+		$engine.runRenderLoop(renderFunction);
 
 		const window = $engine.getHostWindow();
 
-		window.addEventListener('resize', function () {
+		window.addEventListener('resize', () => {
 			$engine.resize();
 		});
 
-		tick().then(function () {
+		tick().then(() => {
 			$engine.resize();
 		});
 	}
 
 	onDestroy(() => {
-		console.log('onDestroy', scene);
+		if ($engine && scene) {
+			$engine.stopRenderLoop(renderFunction);
+		}
 	});
 </script>
 

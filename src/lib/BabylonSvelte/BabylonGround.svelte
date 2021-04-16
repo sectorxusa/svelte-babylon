@@ -9,15 +9,20 @@
 
 	let ground: BABYLON.Mesh;
 
-	export let name = '';
-	export let options = {};
+	export let name: string;
+	export let options: {};
 
 	$: if ($scene && !ground) {
+		if (!name) name = '';
+		if (!options) options = {};
+
 		ground = BABYLON.MeshBuilder.CreateGround(name, options, $scene);
 	}
 
 	onDestroy(() => {
-		console.log('onDestroy', ground);
+		if ($scene && ground) {
+			$scene.removeMesh(ground);
+		}
 	});
 </script>
 
