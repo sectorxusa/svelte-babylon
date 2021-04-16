@@ -18,14 +18,16 @@
 	});
 	$t = 1;
 
+	// eslint-disable-next-line no-undef
 	let spherePosition: BABYLON.Vector3;
 	$: if (spherePosition) spherePosition.y = $t;
 
-	let BABYLON;
+	// eslint-disable-next-line no-undef
+	let BABYLON: BABYLON = null;
 
 	onMount(async () => {
-		const module = await import('babylonjs');
-		BABYLON = module.default;
+		const babylonjs = await import('babylonjs');
+		BABYLON = babylonjs.default;
 	});
 </script>
 
@@ -33,7 +35,7 @@
 	{#if BABYLON}
 		<BabylonEngine>
 			<BabylonScene>
-				<BabylonCamera />
+				<BabylonCamera position={new BABYLON.Vector3(0, 5, -10)} target={BABYLON.Vector3.Zero()} />
 				<BabylonHemisphericLight direction={new BABYLON.Vector3(0, 1, 0)} intensity={0.7} />
 				<BabylonSphere options={{ diameter: 2, segments: 32 }} bind:position={spherePosition} />
 				<BabylonGround options={{ width: 6, height: 6 }} />

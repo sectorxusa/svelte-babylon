@@ -7,6 +7,7 @@
 
 	let scene: BABYLON.Scene;
 	let sceneStore = writable(scene);
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	$: $sceneStore = scene;
 
 	setContext('BabylonScene', {

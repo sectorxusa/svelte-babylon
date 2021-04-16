@@ -9,8 +9,8 @@
 
 	let ground: BABYLON.Mesh;
 
-	export let name: string;
-	export let options: {};
+	export let name: string = null;
+	export let options: Record<string, unknown> = null;
 
 	$: if ($scene && !ground) {
 		if (!name) name = '';

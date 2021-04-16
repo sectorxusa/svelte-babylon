@@ -11,7 +11,7 @@
 
 	export let name: string = null;
 
-	export let options: {} = null;
+	export let options: Record<string, unknown> = null;
 
 	export let position: BABYLON.Vector3 = null;
 	$: if (sphere) sphere.position = position;

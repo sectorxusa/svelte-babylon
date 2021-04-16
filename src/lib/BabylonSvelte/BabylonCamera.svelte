@@ -20,8 +20,8 @@
 
 	$: if ($scene && !camera) {
 		if (!name) name = '';
-		if (!position) position = new BABYLON.Vector3(0, 5, -10);
-		if (!target) target = BABYLON.Vector3.Zero();
+		if (!position) position = new BABYLON.Vector3(0, 0, 0);
+		if (!target) target = new BABYLON.Vector3(0, 0, 0);
 
 		camera = new BABYLON.FreeCamera(name, position, $scene);
 
