@@ -12,6 +12,7 @@
 		BabylonGround
 	} from '$lib/BabylonSvelte';
 
+	// TODO: Add tween chaining example
 	const t = tweened(4, {
 		duration: 2500,
 		easing: bounceOut
@@ -19,7 +20,7 @@
 	$t = 1;
 
 	let spherePosition;
-	$: if (spherePosition) spherePosition.y = $t;
+	$: if (spherePosition) spherePosition.y = $t; // Reactively changing the Babylon sphere's y-position with our Svelte Tween
 
 	let BABYLON;
 
@@ -35,7 +36,8 @@
 			<BabylonScene>
 				<BabylonCamera position={new BABYLON.Vector3(0, 5, -10)} target={BABYLON.Vector3.Zero()} />
 				<BabylonHemisphericLight direction={new BABYLON.Vector3(0, 1, 0)} intensity={0.7} />
-				<BabylonSphere options={{ diameter: 2, segments: 32 }} bind:position={spherePosition} />
+				<!-- Below is two-way binding between spherePosition and position -->
+				<BabylonSphere bind:position={spherePosition} options={{ diameter: 2, segments: 32 }} />
 				<BabylonGround options={{ width: 6, height: 6 }} />
 			</BabylonScene>
 		</BabylonEngine>
