@@ -19,10 +19,10 @@
 	});
 	$t = 1;
 
-	let spherePosition;
+	let spherePosition: import('babylonjs').Vector3;
 	$: if (spherePosition) spherePosition.y = $t; // Reactively changing the Babylon sphere's y-position with our Svelte Tween
 
-	let BABYLON;
+	let BABYLON: Record<string, unknown>;
 
 	onMount(async () => {
 		const babylonjs = await import('babylonjs');

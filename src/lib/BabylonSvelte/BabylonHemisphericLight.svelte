@@ -4,18 +4,18 @@
 	const { getScene } = getContext('BabylonScene');
 	const scene = getScene();
 
-	let light: BABYLON.HemisphericLight;
+	let light: import('babylonjs').HemisphericLight;
 
 	export let name = '';
 	$: if (name && light) light.name = name;
 
-	export let direction: BABYLON.Vector3;
+	export let direction: import('babylonjs').Vector3;
 	$: if (direction && light) light.direction = direction;
 
 	export let intensity: number;
 	$: if (intensity && light) light.intensity = intensity;
 
-	let BABYLON;
+	let BABYLON: Record<string, unknown>;
 
 	$: if (BABYLON && $scene && !light) {
 		if (!direction) direction = new BABYLON.Vector3(0, 0, 0);

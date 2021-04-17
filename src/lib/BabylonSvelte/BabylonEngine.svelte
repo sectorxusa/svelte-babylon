@@ -4,7 +4,7 @@
 
 	let canvas: HTMLCanvasElement;
 
-	let engine: BABYLON.Engine;
+	let engine: import('babylonjs').Engine;
 	const engineStore = writable(engine);
 	$: $engineStore = engine; // eslint-disable-line @typescript-eslint/no-unused-vars
 
@@ -12,7 +12,7 @@
 		getEngine: () => engineStore
 	});
 
-	let BABYLON;
+	let BABYLON: Record<string, unknown>;
 
 	$: if (BABYLON && canvas && !engine) {
 		engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });

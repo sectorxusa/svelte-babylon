@@ -4,12 +4,12 @@
 	const { getScene } = getContext('BabylonScene');
 	const scene = getScene();
 
-	let ground: BABYLON.Mesh;
+	let ground: import('babylonjs').Mesh;
 
 	export let name: string = null;
 	export let options: Record<string, unknown> = null;
 
-	let BABYLON;
+	let BABYLON: Record<string, unknown>;
 
 	$: if (BABYLON && $scene && !ground) {
 		if (!name) name = '';

@@ -2,7 +2,7 @@
 	import { setContext, getContext, onMount, onDestroy, tick } from 'svelte';
 	import { writable } from 'svelte/store';
 
-	let scene: BABYLON.Scene;
+	let scene: import('babylonjs').Scene;
 	let sceneStore = writable(scene);
 	$: $sceneStore = scene; // eslint-disable-line @typescript-eslint/no-unused-vars
 
@@ -17,7 +17,7 @@
 		scene.render();
 	}
 
-	let BABYLON;
+	let BABYLON: Record<string, unknown>;
 
 	$: if (BABYLON && $engine && !scene) {
 		scene = new BABYLON.Scene($engine);
