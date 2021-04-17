@@ -1,15 +1,17 @@
 <script lang="ts">
+	import type { HemisphericLight, Vector3 } from 'babylonjs';
+
 	import { getContext, onMount, onDestroy } from 'svelte';
 
 	const { getScene } = getContext('BabylonScene');
 	const scene = getScene();
 
-	let light: import('babylonjs').HemisphericLight;
+	let light: HemisphericLight;
 
 	export let name = '';
 	$: if (name && light) light.name = name;
 
-	export let direction: import('babylonjs').Vector3;
+	export let direction: Vector3;
 	$: if (direction && light) light.direction = direction;
 
 	export let intensity: number;

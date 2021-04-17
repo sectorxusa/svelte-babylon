@@ -1,8 +1,10 @@
 <script lang="ts">
+	import type { Scene } from 'babylonjs';
+
 	import { setContext, getContext, onMount, onDestroy, tick } from 'svelte';
 	import { writable } from 'svelte/store';
 
-	let scene: import('babylonjs').Scene;
+	let scene: Scene;
 	let sceneStore = writable(scene);
 	$: $sceneStore = scene; // eslint-disable-line @typescript-eslint/no-unused-vars
 

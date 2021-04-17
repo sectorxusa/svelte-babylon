@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { Vector3 } from 'babylonjs';
+
 	import { onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { bounceOut } from 'svelte/easing';
@@ -19,7 +21,7 @@
 	});
 	$t = 1;
 
-	let spherePosition: import('babylonjs').Vector3;
+	let spherePosition: Vector3;
 	$: if (spherePosition) spherePosition.y = $t; // Reactively changing the Babylon sphere's y-position with our Svelte Tween
 
 	let BABYLON: typeof import('babylonjs');

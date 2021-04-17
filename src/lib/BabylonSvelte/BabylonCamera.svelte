@@ -1,18 +1,20 @@
 <script lang="ts">
+	import type { FreeCamera, Vector3 } from 'babylonjs';
+
 	import { getContext, onMount, onDestroy } from 'svelte';
 
 	const { getScene } = getContext('BabylonScene');
 	const scene = getScene();
 
-	let camera: import('babylonjs').FreeCamera;
+	let camera: FreeCamera;
 
 	export let name: string = null;
 	$: if (name && camera) camera.name = name;
 
-	export let position: import('babylonjs').Vector3 = null;
+	export let position: Vector3 = null;
 	$: if (position && camera) camera.position = position;
 
-	export let target: import('babylonjs').Vector3 = null;
+	export let target: Vector3 = null;
 	$: if (target && camera) camera.setTarget(target);
 
 	let BABYLON: typeof import('babylonjs');

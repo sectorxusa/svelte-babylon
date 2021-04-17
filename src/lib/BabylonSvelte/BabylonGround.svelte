@@ -1,10 +1,12 @@
 <script lang="ts">
+	import type { Mesh } from 'babylonjs';
+
 	import { getContext, onMount, onDestroy } from 'svelte';
 
 	const { getScene } = getContext('BabylonScene');
 	const scene = getScene();
 
-	let ground: import('babylonjs').Mesh;
+	let ground: Mesh;
 
 	export let name: string = null;
 	export let options: Record<string, unknown> = null;

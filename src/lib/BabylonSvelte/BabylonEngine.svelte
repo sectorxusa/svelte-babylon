@@ -1,10 +1,12 @@
 <script lang="ts">
+	import type { Engine } from 'babylonjs';
+
 	import { setContext, onMount, onDestroy } from 'svelte';
 	import { writable } from 'svelte/store';
 
 	let canvas: HTMLCanvasElement;
 
-	let engine: import('babylonjs').Engine;
+	let engine: Engine;
 	const engineStore = writable(engine);
 	$: $engineStore = engine; // eslint-disable-line @typescript-eslint/no-unused-vars
 

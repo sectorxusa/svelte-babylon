@@ -1,16 +1,18 @@
 <script lang="ts">
+	import type { Mesh, Vector3 } from 'babylonjs';
+
 	import { getContext, onMount, onDestroy } from 'svelte';
 
 	const { getScene } = getContext('BabylonScene');
 	const scene = getScene();
 
-	let sphere: import('babylonjs').Mesh;
+	let sphere: Mesh;
 
 	export let name: string = null;
 
 	export let options: Record<string, unknown> = null;
 
-	export let position: import('babylonjs').Vector3 = null;
+	export let position: Vector3 = null;
 	$: if (sphere) sphere.position = position;
 
 	let BABYLON: typeof import('babylonjs');
