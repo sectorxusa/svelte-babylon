@@ -16,6 +16,6 @@ https://sx-svelte-babylon.netlify.app/
 [![Language Grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/SectorXUSA/svelte-babylon.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/SectorXUSA/svelte-babylon/context:javascript)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1317568f8b75107655d6/maintainability)](https://codeclimate.com/github/SectorXUSA/svelte-babylon/maintainability)
 
-1. npm i
-2. npm run dev
+1. `$ npm i`
+2. `$ npm run dev`
 3. http://localhost:3000/
