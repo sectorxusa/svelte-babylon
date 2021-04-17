@@ -13,7 +13,7 @@
 	export let position: import('babylonjs').Vector3 = null;
 	$: if (sphere) sphere.position = position;
 
-	let BABYLON: Record<string, unknown>;
+	let BABYLON;
 
 	$: if (BABYLON && $scene && !sphere) {
 		if (!name) name = '';

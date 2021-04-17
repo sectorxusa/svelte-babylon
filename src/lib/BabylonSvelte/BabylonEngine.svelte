@@ -12,7 +12,7 @@
 		getEngine: () => engineStore
 	});
 
-	let BABYLON: Record<string, unknown>;
+	let BABYLON;
 
 	$: if (BABYLON && canvas && !engine) {
 		engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });

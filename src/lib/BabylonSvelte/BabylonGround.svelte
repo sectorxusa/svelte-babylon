@@ -9,7 +9,7 @@
 	export let name: string = null;
 	export let options: Record<string, unknown> = null;
 
-	let BABYLON: Record<string, unknown>;
+	let BABYLON;
 
 	$: if (BABYLON && $scene && !ground) {
 		if (!name) name = '';

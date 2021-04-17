@@ -17,7 +17,7 @@
 		scene.render();
 	}
 
-	let BABYLON: Record<string, unknown>;
+	let BABYLON;
 
 	$: if (BABYLON && $engine && !scene) {
 		scene = new BABYLON.Scene($engine);
