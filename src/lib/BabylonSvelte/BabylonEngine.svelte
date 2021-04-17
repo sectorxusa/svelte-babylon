@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { onDestroy, setContext } from 'svelte';
+	import { setContext, onMount, onDestroy } from 'svelte';
 	import { writable } from 'svelte/store';
-
-	import * as BABYLON from 'babylonjs';
 
 	let canvas: HTMLCanvasElement;
 
@@ -14,9 +12,16 @@
 		getEngine: () => engineStore
 	});
 
-	$: if (!engine && canvas) {
+	let BABYLON;
+
+	$: if (BABYLON && canvas && !engine) {
 		engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
 	}
+
+	onMount(async () => {
+		const babylonjs = await import('babylonjs');
+		BABYLON = babylonjs.default;
+	});
 
 	onDestroy(() => {
 		if (engine) engine.stopRenderLoop();
