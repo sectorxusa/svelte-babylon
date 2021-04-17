@@ -3,7 +3,7 @@
 
 	import { onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
-	import { bounceOut } from 'svelte/easing';
+	import { bounceOut, quadIn } from 'svelte/easing';
 
 	import {
 		BabylonEngine,
@@ -14,15 +14,24 @@
 		BabylonGround
 	} from '$lib/BabylonSvelte';
 
-	const t = tweened(4, {
-		duration: 2500,
+	// Sphere falling
+	const fall = {
+		duration: 1000,
 		easing: bounceOut
-	});
+	};
 
-	// Chaining a tween to loop infinitely between two values
+	// Sphere rising
+	const rise = {
+		duration: 2000,
+		easing: quadIn
+	};
+
+	const t = tweened(4);
+
+	// Chaining a Svelte Tweens to loop infinitely (changing the tween options)
 	(function loop() {
-		t.set(1).then(() => {
-			t.set(4).then(loop);
+		t.set(1, fall).then(() => {
+			t.set(4, rise).then(loop);
 		});
 	})();
 
