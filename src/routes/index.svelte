@@ -18,10 +18,10 @@
 	});
 	$t = 1;
 
-	let spherePosition: unknown;
+	let spherePosition;
 	$: if (spherePosition) spherePosition.y = $t;
 
-	let BABYLON: unknown = null;
+	let BABYLON;
 
 	onMount(async () => {
 		const babylonjs = await import('babylonjs');
