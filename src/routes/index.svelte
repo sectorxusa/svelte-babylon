@@ -14,12 +14,17 @@
 		BabylonGround
 	} from '$lib/BabylonSvelte';
 
-	// TODO: Add tween chaining example
 	const t = tweened(4, {
 		duration: 2500,
 		easing: bounceOut
 	});
-	$t = 1;
+
+	// Chaining a tween to loop infinitely between two values
+	(function loop() {
+		t.set(1).then(() => {
+			t.set(4).then(loop);
+		});
+	})();
 
 	let spherePosition: Vector3;
 	$: if (spherePosition) spherePosition.y = $t; // Reactively changing the Babylon sphere's y-position with our Svelte Tween
