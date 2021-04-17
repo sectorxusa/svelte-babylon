@@ -8,6 +8,8 @@
 	let sceneStore = writable(scene);
 	$: $sceneStore = scene; // eslint-disable-line @typescript-eslint/no-unused-vars
 
+	export const elapsedTime = writable(0);
+
 	setContext('BabylonScene', {
 		getScene: () => sceneStore
 	});
@@ -17,6 +19,7 @@
 
 	function renderFunction() {
 		scene.render();
+		$elapsedTime += scene.deltaTime;
 	}
 
 	let BABYLON: typeof import('babylonjs');
