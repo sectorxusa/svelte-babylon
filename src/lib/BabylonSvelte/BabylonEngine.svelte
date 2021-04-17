@@ -1,12 +1,10 @@
 <script lang="ts">
-	import { onDestroy, setContext } from 'svelte';
+	import { setContext, onMount, onDestroy } from 'svelte';
 	import { writable } from 'svelte/store';
-
-	import * as BABYLON from 'babylonjs';
 
 	let canvas: HTMLCanvasElement;
 
-	let engine: BABYLON.Engine;
+	let engine: import('babylonjs').Engine;
 	const engineStore = writable(engine);
 	$: $engineStore = engine; // eslint-disable-line @typescript-eslint/no-unused-vars
 
@@ -14,9 +12,16 @@
 		getEngine: () => engineStore
 	});
 
-	$: if (!engine && canvas) {
+	let BABYLON: Record<string, unknown>;
+
+	$: if (BABYLON && canvas && !engine) {
 		engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
 	}
+
+	onMount(async () => {
+		const babylonjs = await import('babylonjs');
+		BABYLON = babylonjs.default;
+	});
 
 	onDestroy(() => {
 		if (engine) engine.stopRenderLoop();

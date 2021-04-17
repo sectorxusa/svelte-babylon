@@ -1,11 +1,8 @@
 <script lang="ts">
-	import { getContext, onDestroy, setContext, tick } from 'svelte';
+	import { setContext, getContext, onMount, onDestroy, tick } from 'svelte';
 	import { writable } from 'svelte/store';
-	import type { Writable } from 'svelte/store';
 
-	import * as BABYLON from 'babylonjs';
-
-	let scene: BABYLON.Scene;
+	let scene: import('babylonjs').Scene;
 	let sceneStore = writable(scene);
 	$: $sceneStore = scene; // eslint-disable-line @typescript-eslint/no-unused-vars
 
@@ -14,13 +11,15 @@
 	});
 
 	const { getEngine } = getContext('BabylonEngine');
-	const engine: Writable<BABYLON.Engine> = getEngine();
+	const engine = getEngine();
 
 	function renderFunction() {
 		scene.render();
 	}
 
-	$: if ($engine && !scene) {
+	let BABYLON: Record<string, unknown>;
+
+	$: if (BABYLON && $engine && !scene) {
 		scene = new BABYLON.Scene($engine);
 
 		$engine.runRenderLoop(renderFunction);
@@ -35,6 +34,11 @@
 			$engine.resize();
 		});
 	}
+
+	onMount(async () => {
+		const babylonjs = await import('babylonjs');
+		BABYLON = babylonjs.default;
+	});
 
 	onDestroy(() => {
 		if ($engine && scene) $engine.stopRenderLoop(renderFunction);

@@ -1,29 +1,33 @@
 <script lang="ts">
-	import { getContext, onDestroy } from 'svelte';
-	import type { Writable } from 'svelte/store';
-
-	import * as BABYLON from 'babylonjs';
+	import { getContext, onMount, onDestroy } from 'svelte';
 
 	const { getScene } = getContext('BabylonScene');
-	const scene: Writable<BABYLON.Scene> = getScene();
+	const scene = getScene();
 
-	let light: BABYLON.HemisphericLight;
+	let light: import('babylonjs').HemisphericLight;
 
 	export let name = '';
 	$: if (name && light) light.name = name;
 
-	export let direction: BABYLON.Vector3;
+	export let direction: import('babylonjs').Vector3;
 	$: if (direction && light) light.direction = direction;
 
 	export let intensity: number;
 	$: if (intensity && light) light.intensity = intensity;
 
-	$: if ($scene && !light) {
+	let BABYLON: Record<string, unknown>;
+
+	$: if (BABYLON && $scene && !light) {
 		if (!direction) direction = new BABYLON.Vector3(0, 0, 0);
 		if (!intensity) intensity = 1.0;
 
 		light = new BABYLON.HemisphericLight(name, direction, $scene);
 	}
+
+	onMount(async () => {
+		const babylonjs = await import('babylonjs');
+		BABYLON = babylonjs.default;
+	});
 
 	onDestroy(() => {
 		if ($scene && light) $scene.removeLight(light);
