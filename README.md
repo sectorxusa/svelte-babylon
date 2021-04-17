@@ -10,7 +10,7 @@ https://sx-svelte-babylon.netlify.app/
 
 ## development
 
-[![Contributors](https://badgen.net/github/contributors/sectorxusa/svelte-babylon.svg)](https://github.com/SectorXUSA/svelte-babylon/graphs/contributors)
+[![Contributors](https://badgen.net/github/contributors/sectorxusa/svelte-babylon)](https://github.com/SectorXUSA/svelte-babylon/graphs/contributors)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/SectorXUSA/svelte-babylon.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/SectorXUSA/svelte-babylon/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/SectorXUSA/svelte-babylon.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/SectorXUSA/svelte-babylon/context:javascript)
 [![devDependencies Status](https://status.david-dm.org/gh/sectorxusa/svelte-babylon.svg?type=dev)](https://david-dm.org/sectorxusa/svelte-babylon?type=dev)
