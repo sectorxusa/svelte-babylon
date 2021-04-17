@@ -15,7 +15,7 @@
 	export let target: import('babylonjs').Vector3 = null;
 	$: if (target && camera) camera.setTarget(target);
 
-	let BABYLON;
+	let BABYLON: typeof import('babylonjs');
 
 	$: if (BABYLON && $scene && !camera) {
 		if (!name) name = '';

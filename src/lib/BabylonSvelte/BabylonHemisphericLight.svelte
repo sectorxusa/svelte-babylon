@@ -15,7 +15,7 @@
 	export let intensity: number;
 	$: if (intensity && light) light.intensity = intensity;
 
-	let BABYLON;
+	let BABYLON: typeof import('babylonjs');
 
 	$: if (BABYLON && $scene && !light) {
 		if (!direction) direction = new BABYLON.Vector3(0, 0, 0);

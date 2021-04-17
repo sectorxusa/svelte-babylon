@@ -9,7 +9,7 @@
 	export let name: string = null;
 	export let options: Record<string, unknown> = null;
 
-	let BABYLON;
+	let BABYLON: typeof import('babylonjs');
 
 	$: if (BABYLON && $scene && !ground) {
 		if (!name) name = '';

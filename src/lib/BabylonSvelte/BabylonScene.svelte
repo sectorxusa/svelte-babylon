@@ -17,7 +17,7 @@
 		scene.render();
 	}
 
-	let BABYLON;
+	let BABYLON: typeof import('babylonjs');
 
 	$: if (BABYLON && $engine && !scene) {
 		scene = new BABYLON.Scene($engine);

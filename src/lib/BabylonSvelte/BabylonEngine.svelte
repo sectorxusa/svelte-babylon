@@ -12,7 +12,7 @@
 		getEngine: () => engineStore
 	});
 
-	let BABYLON;
+	let BABYLON: typeof import('babylonjs');
 
 	$: if (BABYLON && canvas && !engine) {
 		engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
