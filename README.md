@@ -10,13 +10,13 @@ https://svelte.dev/repl/3aa641515a99443c9f1036712f62fe90?version=3.37.0
 
 ```
 <BabylonEngine>
-	<BabylonScene>
-		<BabylonCamera position={new BABYLON.Vector3(0, 5, -10)} target={BABYLON.Vector3.Zero()} />
-		<BabylonHemisphericLight direction={new BABYLON.Vector3(0, 1, 0)} intensity={0.7} />
-		<!-- Below is two-way binding between spherePosition and position -->
-		<BabylonSphere bind:position={spherePosition} options={{ diameter: 2, segments: 32 }} />
-		<BabylonGround options={{ width: 6, height: 6 }} />
-	</BabylonScene>
+  <BabylonScene>
+    <BabylonCamera position={new BABYLON.Vector3(0, 5, -10)} target={BABYLON.Vector3.Zero()} />
+    <BabylonHemisphericLight direction={new BABYLON.Vector3(0, 1, 0)} intensity={0.7} />
+    <!-- Below is two-way binding between spherePosition and position -->
+    <BabylonSphere bind:position={spherePosition} options={{ diameter: 2, segments: 32 }} />
+    <BabylonGround options={{ width: 6, height: 6 }} />
+  </BabylonScene>
 </BabylonEngine>
 ```
 
