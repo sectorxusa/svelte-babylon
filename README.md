@@ -6,7 +6,7 @@ Use BabylonJS like A-Frame through reactive Svelte Components.
 
 https://svelte.dev/repl/3aa641515a99443c9f1036712f62fe90?version=3.37.0
 
-##code example
+## code example
 
 ```<BabylonEngine>
 	<BabylonScene>
