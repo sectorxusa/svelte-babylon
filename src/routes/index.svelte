@@ -14,6 +14,8 @@
 		BabylonGround
 	} from '$lib/BabylonSvelte';
 
+	let BABYLON: typeof import('babylonjs'); // Init Babylon
+
 	// Sphere falling
 	const fall = {
 		duration: 1000,
@@ -28,7 +30,7 @@
 
 	const t = tweened(4);
 
-	// Chaining a Svelte Tweens to loop infinitely (changing the tween options)
+	// Chaining a Svelte Tween to loop infinitely (changing the tween options)
 	(function loop() {
 		t.set(1, fall).then(() => {
 			t.set(4, rise).then(loop);
@@ -38,10 +40,16 @@
 	let spherePosition: Vector3;
 	$: if (spherePosition) spherePosition.y = $t; // Reactively changing the Babylon sphere's y-position with our Svelte Tween
 
-	let sphereColor: Color3;
-	$: if (sphereColor) sphereColor = new BABYLON.Color3($t / 4, 0, 1); // Also reactively changing the Babylon sphere's diffuseColor with our Svelte Tween (lazy example)
+	let elapsedTime; // Read-only timer from the scene
 
-	let BABYLON: typeof import('babylonjs');
+	let refColor: Color3;
+	$: if (BABYLON) refColor = new BABYLON.Color3();
+
+	$: if (elapsedTime && refColor)
+		BABYLON.Color3.HSVtoRGBToRef(($elapsedTime / 20) % 360, 1, 1, refColor); // Generate a refColor based on the scene's frame count
+
+	let sphereColor: Color3;
+	$: if (refColor && sphereColor) sphereColor = refColor; // Also reactively changing the Babylon sphere's diffuseColor to our refColor
 
 	onMount(async () => {
 		const babylonjs = await import('babylonjs');
@@ -52,7 +60,7 @@
 <div class:BABYLON>
 	{#if BABYLON}
 		<BabylonEngine>
-			<BabylonScene>
+			<BabylonScene bind:elapsedTime>
 				<BabylonCamera position={new BABYLON.Vector3(0, 5, -10)} target={BABYLON.Vector3.Zero()} />
 				<BabylonHemisphericLight direction={new BABYLON.Vector3(0, 1, 0)} intensity={0.7} />
 				<!-- Below is two-way binding between spherePosition and position -->
