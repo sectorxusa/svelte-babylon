@@ -33,3 +33,6 @@ https://svelte.dev/repl/3119711d043c4a8ba34c2931098a1e9c?version=3.37.0
 1. `$ npm i`
 2. `$ npm run dev`
 3. http://localhost:3000/
+
+## sponsors
+[VU Events](https://www.vu-events.com/)
